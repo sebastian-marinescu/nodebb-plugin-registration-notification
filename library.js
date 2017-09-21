@@ -62,13 +62,14 @@ function sendNotification(data) {
 		adminUids: async.apply(groups.getMembers, 'administrators', 0, -1)
 	}, function(err, metadata) {
 		if (metadata.method === 'email') {
-			var site_title = meta.config.title !== undefined ? meta.config.title : 'NodeBB';
+			var site_title = meta.config.title !== undefined ? meta.config.title : 'NodeBB',
+				newUser = data;
 
 			async.eachSeries(metadata.adminUids, function(uid, next) {
 				emailer.send('new-registration', uid, {
 					site_title: site_title,
 					subject: '[' + site_title + '] New User Registration',
-					user: data.user,
+					user: newUser,
 					url: nconf.get('url')
 				}, next);
 			}, onError);
