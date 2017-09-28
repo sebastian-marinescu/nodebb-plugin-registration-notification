@@ -50,7 +50,7 @@ plugin.onQueued = function(data, callback) {
 	if (allowed.indexOf(meta.config.registrationType) !== -1) {
 		var payload = data.data;
 		payload.userslug = utils.slugify(payload.username);
-		payload.picture = 'brand:logo';
+		payload.picture = null;
 		sendNotification(payload);
 		callback(null, data);
 	}
