@@ -76,11 +76,11 @@ function sendNotification(data) {
 		} else {
 			// No match, send notification
 			notifications.create({
-				bodyShort: 'A user by the name of ' + data.user.username + ' has registered',
+				bodyShort: 'A user by the name of ' + data.username + ' has registered',
 				bodyLong: '',
-				image: data.user.picture,
+				image: data.picture,
 				nid: 'plugin:registration-notification:' + Date.now(),
-				path: '/user/' + data.user.userslug
+				path: '/user/' + data.userslug
 			}, function(err, notification) {
 				notifications.push(notification, metadata.adminUids, onError);
 			});
